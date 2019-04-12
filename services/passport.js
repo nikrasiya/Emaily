@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => done(null, user.id));
 // Used to turn back into a user for a GET request
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  done(null, user);
+  return done(null, user);
 });
 
 passport.use(
@@ -36,13 +36,13 @@ passport.use(
       if (existingUser) {
         // we already have a record with the given
         // profile ID
-        done(null, existingUser);
+        return done(null, existingUser);
       }
       // Model Instance
       // we dont have a record with this ID
       // Saves this document to the mongoDB
       const user = await new User({ googleId: profile.id }).save();
-      done(null, user);
+      return done(null, user);
     }
   )
 );
