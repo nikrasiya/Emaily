@@ -35,7 +35,3 @@ app.listen(PORT, () => {
   console.log(`Listening on port 5000`);
 });
 
-// Heroku deployment
-// https://pure-thicket-94708.herokuapp.com/
-// Git
-// https://git.heroku.com/pure-thicket-94708.git
