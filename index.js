@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session"); // cookie-based authentication.
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 // returns a key object
 const keys = require("./config/keys");
@@ -20,10 +21,12 @@ const app = express();
 require("./models/User");
 require("./services/passport");
 
+// Middleware used to parse the stripe token
+// Check handleToken action creater for reference
+app.use(bodyParser.json());
+
 // Middleware makes adjustments
 // Cookie-Session extracts cookie-data
-
-
 // cookie session is used to identify between requests
 // on HTTP because HTTP is stateless
 // During response we set the header with the 'set-cookie'.
@@ -47,6 +50,21 @@ app.use(passport.session());
 
 // passing app instance to the authRoutes function
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
+
+if (process.env.NODE_ENV === "production") {
+  // Express will serve up production assets
+  // like our main.js/ main.css file
+  // if no route match, check into this route for main.js
+  app.use(express.static("client/build"));
+
+  // Express will serve up index.html
+  // if it does not recognize the route
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // listen for environment port or local port
 const PORT = process.env.PORT || 5000;
