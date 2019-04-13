@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => done(null, user.id));
 // Used to turn back into a user for a GET request
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  return done(null, user);
+  done(null, user);
 });
 
 passport.use(
@@ -42,7 +42,7 @@ passport.use(
       // we dont have a record with this ID
       // Saves this document to the mongoDB
       const user = await new User({ googleId: profile.id }).save();
-      return done(null, user);
+      done(null, user);
     }
   )
 );
