@@ -1,7 +1,7 @@
 ## **Client**
 
-![alt text](services/Emaily-Client.jpg)
+![alt text](client/public/Emaily-Client.jpg)
 
 ## **Server**
 
-![alt text](services/Emaily-Server.jpg)
+![alt text](client/public/Emaily-Server.jpg)
