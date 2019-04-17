@@ -22,13 +22,29 @@ class SurveyList extends Component {
             <span className={"card-title"}>{survey.title}</span>
             <p>{survey.body}</p>
             <p className={"right"}>
+              <span role={"img"} aria-label={"note"}>
+                🚀
+              </span>{" "}
               <em>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</em>
             </p>
           </div>
           <div className={"card-action"}>
-            <span style={{paddingRight: '20px'}}>YES: {survey.yes}</span>
-            <span>NO: {survey.no}</span>
+            <span style={{ paddingRight: "20px" }}>
+              <span role={"img"} aria-label={"note"}>
+                👍🏾
+              </span>{" "}
+              {survey.yes}
+            </span>
+            <span>
+              <span role={"img"} aria-label={"note"}>
+                👎🏾
+              </span>{" "}
+              {survey.no}
+            </span>
             <span className={"right"}>
+              <span role={"img"} aria-label={"note"}>
+                ⏰{" "}
+              </span>
               Last Response: {this.renderLastResponse(survey.lastResponded)}
             </span>
           </div>
