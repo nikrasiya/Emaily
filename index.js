@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session"); // cookie-based authentication.
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const colors = require("colors");
 
 // returns a key object
 const keys = require("./config/keys");
@@ -19,6 +20,7 @@ const app = express();
 // We are not returning anything from the files.
 // Hence we need not assign this to any variables.
 require("./models/User");
+require("./models/Survey");
 require("./services/passport");
 
 // Middleware used to parse the stripe token
@@ -51,6 +53,7 @@ app.use(passport.session());
 // passing app instance to the authRoutes function
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
@@ -71,5 +74,5 @@ const PORT = process.env.PORT || 5000;
 
 // server is listening on
 app.listen(PORT, () => {
-  console.log(`Listening on port 5000`);
+  console.log(colors.cyan(`[server] listening on port ` + PORT));
 });

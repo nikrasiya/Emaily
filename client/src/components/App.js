@@ -4,9 +4,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./Header";
 import { fetchUser } from "../actions";
 import Landing from "./Landing";
-
-const Dashboard = () => <h2> Dashboard </h2>;
-const SurveyNew = () => <h2> SurveyNew </h2>;
+import Dashboard from "./Dashboard";
+import SurveyNew from "./surveys/SurveyNew";
 
 class App extends Component {
   componentDidMount() {
