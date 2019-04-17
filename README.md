@@ -2,6 +2,6 @@
 
 ![alt text](Emaily-Client.jpg)
 
-##Server
+## Server
 
 ![alt text](Emaily-Server.jpg)
