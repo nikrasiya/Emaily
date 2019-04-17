@@ -6,8 +6,10 @@ import SurveyList from "./surveys/SurveyList";
 class Dashboard extends Component {
   render() {
     return (
-      <div>
-        <h3>Dashboard</h3>
+      <div >
+        <h3 style={{ marginBottom: "30px" }}>Surveys  <span role={"img"} aria-label={"note"}>
+            ✍️
+          </span></h3>
         <SurveyList />
         <div
           style={{ marginRight: "200px", marginBottom: "20px" }}

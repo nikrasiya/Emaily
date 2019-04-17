@@ -7,6 +7,13 @@ class SurveyList extends Component {
     this.props.fetchSurveys();
   }
 
+  renderLastResponse(lastResponded) {
+    if (lastResponded) {
+      return new Date(lastResponded).toLocaleString();
+    }
+    return "No response yet!";
+  }
+
   renderSurveys() {
     return this.props.surveys.reverse().map(survey => {
       return (
@@ -15,12 +22,15 @@ class SurveyList extends Component {
             <span className={"card-title"}>{survey.title}</span>
             <p>{survey.body}</p>
             <p className={"right"}>
-              Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+              <em>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</em>
             </p>
           </div>
           <div className={"card-action"}>
-            <a>YES:{survey.yes}</a>
-            <a>NO:{survey.no}</a>
+            <span style={{paddingRight: '20px'}}>YES: {survey.yes}</span>
+            <span>NO: {survey.no}</span>
+            <span className={"right"}>
+              Last Response: {this.renderLastResponse(survey.lastResponded)}
+            </span>
           </div>
         </div>
       );
@@ -28,7 +38,11 @@ class SurveyList extends Component {
   }
 
   render() {
-    return <div>{this.renderSurveys()}</div>;
+    return (
+      <div className={"row"}>
+        <div className={"col s9"}>{this.renderSurveys()}</div>
+      </div>
+    );
   }
 }
 

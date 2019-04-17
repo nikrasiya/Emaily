@@ -6,3 +6,6 @@ setTimeout(() => {
     console.log(colors.rainbow("[local tunnel] running on -> ") + tunnel.url);
   });
 }, 2000);
+
+// HTTP POST URL
+// https://emaily-react-app.localtunnel.me/api/surveys/webhooks
